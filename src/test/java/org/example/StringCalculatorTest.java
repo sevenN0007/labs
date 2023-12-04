@@ -37,4 +37,10 @@ public class StringCalculatorTest {
         assertThrows(NumberFormatException.class, () -> calculator.add("next"));
     }
 
+    @Test
+    public void testAdd_NumbersFrom() {
+        StringCalculator calculator = new StringCalculator();
+        assertEquals(16, calculator.add("5\n10,1"));;
+    }
+
 }
