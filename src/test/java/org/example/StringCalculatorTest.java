@@ -45,6 +45,13 @@ public class StringCalculatorTest {
         assertEquals(3, calculator.add("//%\n1%1,1"));
     }
 
+    @Test
+    public void testAdd_NegativesNumbers() {
+        StringCalculator calculator = new StringCalculator();
+        assertThrows(NumberFormatException.class, () -> calculator.add("5\n-10,1"));
+        assertThrows(NumberFormatException.class, () -> calculator.add("//%\n1%1%-5"));
+        assertThrows(NumberFormatException.class, () -> calculator.add("//%\n1%1,-1"));
+    }
 
 
 }
