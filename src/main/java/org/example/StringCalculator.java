@@ -29,9 +29,9 @@ public class StringCalculator {
 
                         if (currentNumber < 0) {
                             negativeNumbers.add(currentNumber);
+                        } else if (currentNumber <= 1000) {
+                            sum += currentNumber;
                         }
-
-                        sum += currentNumber;
                     } catch (NumberFormatException e) {
                         throw new IllegalStateException("Please enter valid numbers.");
                     }
@@ -47,7 +47,7 @@ public class StringCalculator {
                 String[] numArray = numbers.split(",|\\\\n");
 
                 int sum = 0;
-                List<Integer> negativeNumbers = new ArrayList<>();
+                List negativeNumbers = new ArrayList();
 
                 for (String num : numArray) {
                     try {
@@ -55,9 +55,9 @@ public class StringCalculator {
 
                         if (currentNumber < 0) {
                             negativeNumbers.add(currentNumber);
+                        } else if (currentNumber <= 1000) {
+                            sum += currentNumber;
                         }
-
-                        sum += currentNumber;
                     } catch (NumberFormatException e) {
                         throw new IllegalStateException("Please enter valid numbers.");
                     }
