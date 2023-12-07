@@ -40,7 +40,11 @@ public class StringCalculatorTest {
     @Test
     public void testAdd_NumbersFrom() {
         StringCalculator calculator = new StringCalculator();
-        assertEquals(16, calculator.add("5\n10,1"));;
+        assertEquals(16, calculator.add("5\n10,1"));
+        assertEquals(7, calculator.add("//%\n1%1%5"));;
+        assertEquals(3, calculator.add("//%\n1%1,1"));
     }
+
+
 
 }

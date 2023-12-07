@@ -12,14 +12,11 @@ public class Main {
             System.out.print("Enter numbers separated by commas: ");
             String input = reader.readLine();
 
-            // Replace line characters
-            input = input.replaceAll("\\\\n", ",");
-
             StringCalculator calculator = new StringCalculator();
             int result = calculator.add(input);
             System.out.println("Result: " + result);
 
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException | IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
