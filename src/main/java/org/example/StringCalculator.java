@@ -13,11 +13,11 @@ public class StringCalculator {
         } else {
 
             // A regular expression pattern
-            Pattern pattern = Pattern.compile("//([^\\\\n]+)\\\\n(.*)");
+            Pattern pattern = Pattern.compile("//(\\[.*?\\])\\\\n(.*)");
             Matcher matcher = pattern.matcher(numbers);
 
             if (matcher.find()) {
-                String delimiter = Pattern.quote(matcher.group(1));
+                String delimiter = Pattern.quote(matcher.group(1).replaceAll("[\\[\\]]", ""));
                 String[] numArray = matcher.group(2).split(delimiter + "|,|\\\\n");
 
                 int sum = 0;

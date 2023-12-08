@@ -41,16 +41,14 @@ public class StringCalculatorTest {
     public void testAdd_NumbersFrom() {
         StringCalculator calculator = new StringCalculator();
         assertEquals(16, calculator.add("5\n10,1"));
-        assertEquals(7, calculator.add("//%\n1%1%5"));;
-        assertEquals(3, calculator.add("//%\n1%1,1"));
+        assertEquals(6, calculator.add("//[***]\n1***1***1***1\n1,1\n"));
     }
 
     @Test
     public void testAdd_NegativesNumbers() {
         StringCalculator calculator = new StringCalculator();
         assertThrows(NumberFormatException.class, () -> calculator.add("5\n-10,1"));
-        assertThrows(NumberFormatException.class, () -> calculator.add("//%\n1%1%-5"));
-        assertThrows(NumberFormatException.class, () -> calculator.add("//%\n1%1,-1"));
+        assertThrows(NumberFormatException.class, () -> calculator.add("//[***]\n1***-1***1***1\n1,1"));
     }
 
 
