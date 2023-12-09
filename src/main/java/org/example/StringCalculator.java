@@ -17,8 +17,16 @@ public class StringCalculator {
             Matcher matcher = pattern.matcher(numbers);
 
             if (matcher.find()) {
-                String delimiter = Pattern.quote(matcher.group(1).replaceAll("[\\[\\]]", ""));
-                String[] numArray = matcher.group(2).split(delimiter + "|,|\\\\n");
+                String rawDelimiters = matcher.group(1);
+                List<String> delimiters = extractDelimiters(rawDelimiters);
+
+                // a regex pattern for multiple delimiters
+                String delimiterRegex = delimiters.stream()
+                        .map(delimiter -> Pattern.quote(delimiter))
+                        .reduce((d1, d2) -> d1 + "|" + d2)
+                        .orElseThrow();
+
+                String[] numArray = matcher.group(2).split(delimiterRegex + "|,|\\\\n");
 
                 int sum = 0;
                 List negativeNumbers = new ArrayList();
@@ -43,7 +51,7 @@ public class StringCalculator {
 
                 return sum;
             } else {
-                // No custom delimiter found, use delimiters (, and \n)
+                // No custom delimiter found, use default delimiters (, and \n)
                 String[] numArray = numbers.split(",|\\\\n");
 
                 int sum = 0;
@@ -70,5 +78,17 @@ public class StringCalculator {
                 return sum;
             }
         }
+    }
+
+    // method to extract delimiters from the raw string
+    private List<String> extractDelimiters(String rawDelimiters) {
+        List delimiters = new ArrayList();
+        Matcher delimiterMatcher = Pattern.compile("\\[(.*?)\\]").matcher(rawDelimiters);
+
+        while (delimiterMatcher.find()) {
+            delimiters.add(delimiterMatcher.group(1));
+        }
+
+        return delimiters;
     }
 }

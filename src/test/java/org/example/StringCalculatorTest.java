@@ -42,6 +42,7 @@ public class StringCalculatorTest {
         StringCalculator calculator = new StringCalculator();
         assertEquals(16, calculator.add("5\n10,1"));
         assertEquals(6, calculator.add("//[***]\n1***1***1***1\n1,1\n"));
+        assertEquals(7, calculator.add("//[*][+++][%]\n1*2%3+++1"));
     }
 
     @Test
